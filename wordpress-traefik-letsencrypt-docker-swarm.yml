@@ -59,17 +59,17 @@ services:
       MYSQL_PASSWORD_FILE: /run/secrets/wordpress-database-password
       # MySQL root password (replace with yours)
       MYSQL_ROOT_PASSWORD_FILE: /run/secrets/wordpress-mysql-root-password
+    networks:
+      - wordpress-network
+    secrets:
+      - wordpress-mysql-root-password
+      - wordpress-database-password
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "127.0.0.1"]
       interval: 10s
       timeout: 5s
       retries: 3
       start_period: 60s
-    networks:
-      - wordpress-network
-    secrets:
-      - wordpress-mysql-root-password
-      - wordpress-database-password
     deploy:
       mode: replicated
       replicas: 1
