@@ -47,7 +47,7 @@ services:
   mysql:
     <<: *default-opts
     # Image tag (replace with yours)
-    image: mysql:8.0.24
+    image: mysql:8
     volumes:
       - mysql-data:/var/lib/mysql
     environment:
